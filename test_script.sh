@@ -4,10 +4,11 @@ apt-get update
 apt-get install -y git
 apt-get install -y wget
 apt-get install -y libxss1 libappindicator1 libindicator7
-wget -P /usr/bin https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-apt-get install -y /usr/bin/google-chrome*.deb
+wget -P https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+apt-get install -y ./google-chrome*.deb
 which google-chrome
 
+mvn clean test -Dtest=Access
 
 cd ../
 ls -l
@@ -29,6 +30,7 @@ then
     then
       timeout 300 bash -c 'while [[ "$(curl --insecure -s -o /dev/null -w ''%{http_code}'' http://localhost:8080)" != "200" ]]; do sleep 5; done'
       mvn clean test -Dsuite=testng
+      which chrome
     else
       wrong directory
     fi

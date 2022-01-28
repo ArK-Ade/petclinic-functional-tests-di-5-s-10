@@ -13,7 +13,6 @@ build:
     -  cat /etc/os-release
   script:
     - mvn compile
-    - mvn clean test -Dtest=Access
 
 test:
   stage: test
