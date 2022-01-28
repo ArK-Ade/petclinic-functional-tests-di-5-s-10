@@ -4,6 +4,9 @@ stages:
   - build
   - test
 
+variables:
+  REPORT_FILE: "target/surefire-reports/TEST-*.xml"
+
 build:
   stage: build
   before_script:
@@ -13,3 +16,7 @@ build:
 test:
   stage: test
   script: bash -x test_script.sh
+  artifacts:
+    when: always
+    reports:
+      junit: $REPORT_FILE

@@ -25,6 +25,7 @@ then
     ls -l
     if [[ -f "pom.xml" ]] ;
     then
+      timeout 300 bash -c 'while [[ "$(curl --insecure -s -o /dev/null -w ''%{http_code}'' http://localhost:8080)" != "200" ]]; do sleep 5; done'
       mvn clean test -Dsuite=testng
     else
       wrong directory
