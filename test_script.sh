@@ -4,8 +4,10 @@ apt-get update
 apt-get install -y git
 apt-get install -y wget
 apt-get install -y libxss1 libappindicator1 libindicator7
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-apt-get install -y ./google-chrome*.deb
+wget -P /usr/bin https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+apt-get install -y /usr/bin/google-chrome*.deb
+which google-chrome
+
 
 cd ../
 ls -l
