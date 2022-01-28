@@ -11,7 +11,9 @@ build:
   stage: build
   before_script:
     -  cat /etc/os-release
-  script: mvn compile
+  script:
+    - mvn compile
+    - mvn clean test -Dtest=Access
 
 test:
   stage: test

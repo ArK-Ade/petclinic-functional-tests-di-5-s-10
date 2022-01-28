@@ -1,4 +1,4 @@
-package com.petclinic;
+package com;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
