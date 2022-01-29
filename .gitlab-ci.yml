@@ -21,3 +21,26 @@ test:
     when: always
     reports:
       junit: $REPORT_FILE
+
+#Job for scheduled pipeline in prod branch
+test-prod-scheduled:
+  stage: test
+  script: bash -x test_script.sh
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule" && $CI_COMMIT_BRANCH == "master"'
+  artifacts:
+    when: always
+    reports:
+      junit: $REPORT_FILE
+
+#Job for scheduled pipeline for feature branch or preproduction branch
+test-develop-scheduled:
+  stage: test
+  script: bash -x test_script.sh
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+    - if: '$CI_COMMIT_BRANCH == "develop" || $CI_COMMIT_BRANCH=="/^(?!feature).+@/"'
+  artifacts:
+    when: always
+    reports:
+      junit: $REPORT_FILE
